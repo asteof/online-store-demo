@@ -1,7 +1,9 @@
 const productsDiv = document.querySelector('.products');
 const testProduct = document.getElementById('test');
 const productDetailsWrap = document.querySelector('.product-details-wrap');
-const detailsBg = document.querySelector('.details-bg');
+const detailsBg = document.querySelector('.detail-bg');
+const errorContainer = document.querySelector('.error');
+const errorText = document.getElementById('error');
 
 const fetchData = () => {
     fetch('https://spreadsheets.google.com/feeds/cells/1PXorfz2O2NqH-FcW0nA-HhmtZMmSSwgHheifWc0e1tU/1/public/full?alt=json')
@@ -11,14 +13,18 @@ const fetchData = () => {
         })
         .then(data => {
             console.log(data)
-
+            errorContainer.style.display = 'none';
             const productsArray = chunkEntryArray(data.feed.entry);
             productsArray.forEach(product => {
                 createProduct(product);
             })
 
         })
-        .catch(error => console.log(error));
+        .catch(error => {
+            errorContainer.style.display = 'block';
+            errorText.textContent = 'Error text: '+error.toString();
+            console.log(error)
+        });
 }
 
 fetchData();

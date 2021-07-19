@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <title>Shop</title>
     <link rel="stylesheet" href="style.css">
-    <script defer src="script.js"></script>
+    <!--    <script defer src="script.js"></script>-->
+    <script defer type="module" src="shopController.js"></script>
 </head>
 <body>
 <div class="navigation">
@@ -18,11 +19,45 @@
     <button>Yui</button>
 </div>
 
+<div class="error">
+    Unable to load data. Please, try again later.
+    <div id="error">Error text:</div>
+</div>
+
 <div class="product-details-wrap">
     <div class="product-details">
+        <img class="detail-image" src="media/kirpich_tr.png" alt="Kirpich">
+        <div class="detail-description">
+            <div class="name" id="detail-name">Kirpich</div>
+            <div class="manufacturer" id="detail-manufacture">Mykolayovych</div>
+            <div class="other">
+                <div>
+                    Category:<span id="detail-category">Technology & gadgets</span>
+                </div>
+                <div>
+                    Amount:<span id="detail-amount">1</span>
+                </div>
+                <div>
+                    Units:<span id="detail-units">10 L</span>
+                </div>
+                <div>
+                    Price:<span id="detail-price">1488$</span>
+                </div>
+            </div>
+        </div>
+        <div class="ingredients-title">Ingredients:</div>
+        <div class="ingredients">
+            Love, Hearts, Cement, Clay, Fire
+        </div>
 
+        <div class="detail-cart-btn-wrap">
+            <button class="product-cart-btn">
+                <img class="cart-icon" src="media/shopping-cart.svg" alt="Add to cart">
+                Add to cart
+            </button>
+        </div>
     </div>
-    <div class="details-bg"></div>
+    <div class="detail-bg"></div>
 </div>
 
 <div class="products-container">
@@ -39,7 +74,7 @@
 
     <div class="products">
         <!--&lt;!&ndash;-->
-        <div class="product" id="test">
+        <div class="product" id="test" data-id="1">
             <div class="product-image-wrap">
                 <img src="media/kirpich_tr.png"
                      class="product-image"
@@ -49,7 +84,7 @@
                 <div class="name">Name</div>
                 <div class="manufacturer">Manufacturer</div>
                 <div class="units-price">
-                    <div class="units">10l</div>
+                    <div class="units">10 L</div>
                     <div class="price">33$</div>
                 </div>
                 <div class="cart-btn-wrap">
