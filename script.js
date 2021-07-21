@@ -1,7 +1,7 @@
 const productsDiv = document.querySelector('.products');
 const testProduct = document.getElementById('test');
 const productDetailsWrap = document.querySelector('.product-details-wrap');
-const detailsBg = document.querySelector('.detail-bg');
+const detailsBg = document.querySelector('.darkscreen-bg');
 const errorContainer = document.querySelector('.error');
 const errorText = document.getElementById('error');
 

@@ -3,20 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <title>Shop</title>
-    <link rel="stylesheet" href="style.css">
-    <!--    <script defer src="script.js"></script>-->
+    <link rel="stylesheet" href="css/style.css">
     <script defer type="module" src="shopController.js"></script>
 </head>
 <body>
 <div class="navigation">
-    <button>Yui</button>
-    <button>Yui</button>
-    <button>Yui</button>
-    <button>Yui</button>
-    <button>Yui</button>
-    <button>Yui</button>
-    <button>Yui</button>
-    <button>Yui</button>
+    <div class="sort-wrap">
+        <label for="sort">Sort by:</label>
+        <select name="sort" id="sort">
+            <option value="price-low-high">Price - low to high</option>
+            <option value="price-high-low">Price - high to low</option>
+            <option value="name-az">Name - A-Z</option>
+            <option value="name-za">Name - Z-A</option>
+        </select>
+    </div>
+    <div class="cart-btn-wrap">
+        <button class="cart-btn">
+            <img class="cart-icon" src="media/shopping-cart.svg" alt="Add to cart">
+        </button>
+    </div>
 </div>
 
 <div class="error">
@@ -24,8 +29,61 @@
     <div id="error">Error text:</div>
 </div>
 
+<div class="message">
+    Item successfully added!
+    <div>
+        Open your cart now to order it!
+    </div>
+</div>
+
+<div class="cart-wrap">
+    <div class="cart">
+        <div class="icon-wrap">
+            <img src="media/close.svg" class="icon" id="cart-close" alt="Close">
+        </div>
+        <div class="cart-products">
+            <div class="cart-product" data-id="1">
+                <img src="media/kirpich_tr.png" alt="Kirpich">
+                <div class="cart-description">
+                    <div class="name">Kirpich</div>
+                    <div class="manufacturer">Mykolayovych</div>
+                    <div class="cart-other">
+                        <div> Units: <span>10 L</span></div>
+                        <div> Price: <span>1488$</span></div>
+                    </div>
+                </div>
+                <div class="controls-wrap">
+                    <div class="cart-controls">
+                        <button>
+                            <img src="media/minus.svg" class="icon" alt="-">
+                        </button>
+                        <label>
+                            <input type="number" min="1" max="42" value="1">
+                        </label>
+                        <button>
+                            <img src="media/plus.svg" class="icon" alt="+">
+                        </button>
+                    </div>
+
+                    <div class="total">
+                        <button>
+                            <img src="media/trash-bin.svg" class="icon" alt="Remove from cart">
+                        </button>
+                        <div> Total: <span>1488$</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="darkscreen-bg" id="cart-bg"></div>
+</div>
+
 <div class="product-details-wrap">
     <div class="product-details">
+        <div class="icon-wrap">
+            <img src="media/close.svg" class="icon" id="detail-close" alt="Close">
+        </div>
         <img class="detail-image" src="media/kirpich_tr.png" alt="Kirpich">
         <div class="detail-description">
             <div class="name" id="detail-name">Kirpich</div>
@@ -57,7 +115,7 @@
             </button>
         </div>
     </div>
-    <div class="detail-bg"></div>
+    <div class="darkscreen-bg" id="detail-bg"></div>
 </div>
 
 <div class="products-container">
