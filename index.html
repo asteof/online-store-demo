@@ -8,16 +8,29 @@
 </head>
 <body>
 <div class="navigation">
-    <div class="sort-wrap">
-        <label for="sort">Sort by:</label>
-        <select name="sort" id="sort">
-            <option value="price-low-high">Price - low to high</option>
-            <option value="price-high-low">Price - high to low</option>
-            <option value="name-az">Name - A-Z</option>
-            <option value="name-za">Name - Z-A</option>
-        </select>
+    <div class="sort-filter">
+        <div class="sort-wrap">
+            <label for="sort">Sort by:</label>
+            <select name="sort" id="sort">
+                <option value="price-low-high">Price - low to high</option>
+                <option value="price-high-low">Price - high to low</option>
+                <option value="name-az">Name - A-Z</option>
+                <option value="name-za">Name - Z-A</option>
+            </select>
+        </div>
+
+        <div class="sort-wrap">
+            <label for="filter">Filter by category</label>
+            <select id="filter">
+                <option value="none">None</option>
+            </select>
+        </div>
     </div>
+
     <div class="cart-btn-wrap">
+        <div id="cartCounter">
+            0
+        </div>
         <button class="cart-btn">
             <img class="cart-icon" src="media/shopping-cart.svg" alt="Add to cart">
         </button>
@@ -25,12 +38,17 @@
 </div>
 
 <div class="error">
-    Unable to load data. Please, try again later.
+    <div class="icon-wrap">
+        <img src="media/close.svg" class="icon" id="closeError" alt="Close">
+    </div>
+    <div id="warning"> Unable to load data. Please, try again later.</div>
     <div id="error">Error text:</div>
 </div>
 
 <div class="message">
-    Item successfully added!
+    <div>
+        Item successfully added!
+    </div>
     <div>
         Open your cart now to order it!
     </div>
@@ -42,41 +60,84 @@
             <img src="media/close.svg" class="icon" id="cart-close" alt="Close">
         </div>
         <div class="cart-products">
-            <div class="cart-product" data-id="1">
-                <img src="media/kirpich_tr.png" alt="Kirpich">
-                <div class="cart-description">
-                    <div class="name">Kirpich</div>
-                    <div class="manufacturer">Mykolayovych</div>
-                    <div class="cart-other">
-                        <div> Units: <span>10 L</span></div>
-                        <div> Price: <span>1488$</span></div>
-                    </div>
-                </div>
-                <div class="controls-wrap">
-                    <div class="cart-controls">
-                        <button>
-                            <img src="media/minus.svg" class="icon" alt="-">
-                        </button>
-                        <label>
-                            <input type="number" min="1" max="42" value="1">
-                        </label>
-                        <button>
-                            <img src="media/plus.svg" class="icon" alt="+">
-                        </button>
+            <!--
+                        <div class="cart-product" data-id="1">
+                            <img src="media/kirpich_tr.png" alt="Kirpich">
+                            <div class="cart-description">
+                                <div class="name">Kirpich</div>
+                                <div class="manufacturer">Mykolayovych</div>
+                                <div class="cart-other">
+                                    <div> Units: <span>10 L</span></div>
+                                    <div> Price: <span>1488$</span></div>
+                                </div>
+                            </div>
+                            <div class="controls-wrap">
+                                <div class="cart-controls">
+                                    <button>
+                                        <img src="media/minus.svg" class="icon" alt="-">
+                                    </button>
+                                    <label>
+                                        <input type="number" min="1" max="42" value="1">
+                                    </label>
+                                    <button>
+                                        <img src="media/plus.svg" class="icon" alt="+">
+                                    </button>
+                                </div>
+
+                                <div class="total">
+                                    <button>
+                                        <img src="media/trash-bin.svg" class="icon" alt="Remove from cart">
+                                    </button>
+                                    <div> Total: <span>4269$</span></div>
+                                </div>
+                            </div>
+                        </div>
+                         -->
+        </div>
+        <div class="cart-order">
+            <form>
+                <div class="fields-wrap">
+                    <div>
+                        <label for="name">Name</label>
+                        <input type="text" id="name">
                     </div>
 
-                    <div class="total">
-                        <button>
-                            <img src="media/trash-bin.svg" class="icon" alt="Remove from cart">
-                        </button>
-                        <div> Total: <span>1488$</span></div>
+                    <div>
+                        <label for="email">Email</label>
+                        <input type="email" id="email">
+                    </div>
+
+                    <div>
+                        <label for="phoneNumber">Phone number</label>
+                        <input type="text" id="phoneNumber">
+                    </div>
+
+                    <div>
+                        <span class="check-wrap">
+                            <input type="checkbox" class="custom-check" checked id="terms">
+                        </span>
+                        <label for="terms">I have read the communism manifesto and strongly disagree with it</label>
                     </div>
                 </div>
-            </div>
+
+                <div class="cart-submit">
+                    <div class="cart-other">
+                        <div>
+                            Total
+                            <span class="cart-total">0</span>
+                        </div>
+                    </div>
+                    <div class="order-btn-wrap">
+                        <button id="clear" type="reset">Clear cart</button>
+                        <button type="submit">Place order</button>
+                    </div>
+                </div>
+            </form>
         </div>
 
+
     </div>
-    <div class="darkscreen-bg" id="cart-bg"></div>
+    <div class="darkscreen-bg" id="cartBg"></div>
 </div>
 
 <div class="product-details-wrap">
@@ -99,7 +160,7 @@
                     Units:<span id="detail-units">10 L</span>
                 </div>
                 <div>
-                    Price:<span id="detail-price">1488$</span>
+                    Price:<span id="detail-price">4269$</span>
                 </div>
             </div>
         </div>
@@ -109,27 +170,16 @@
         </div>
 
         <div class="detail-cart-btn-wrap">
-            <button class="product-cart-btn">
+            <button class="product-cart-btn" id="add-to-cart">
                 <img class="cart-icon" src="media/shopping-cart.svg" alt="Add to cart">
                 Add to cart
             </button>
         </div>
     </div>
-    <div class="darkscreen-bg" id="detail-bg"></div>
+    <div class="darkscreen-bg" id="detailBg"></div>
 </div>
 
 <div class="products-container">
-    <div class="filter">
-        <button>Yui</button>
-        <button>Yui</button>
-        <button>Yui</button>
-        <button>Yui</button>
-        <button>Yui</button>
-        <button>Yui</button>
-        <button>Yui</button>
-        <button>Yui</button>
-    </div>
-
     <div class="products">
         <!--&lt;!&ndash;-->
         <div class="product" id="test" data-id="1">
@@ -139,8 +189,8 @@
                      alt="">
             </div>
             <div class="product-description">
-                <div class="name">Name</div>
-                <div class="manufacturer">Manufacturer</div>
+                <div class="name">Kirpich</div>
+                <div class="manufacturer">Mykolayovych</div>
                 <div class="units-price">
                     <div class="units">10 L</div>
                     <div class="price">33$</div>
